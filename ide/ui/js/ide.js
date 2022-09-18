@@ -47,6 +47,7 @@ function changeLanguage(){
 	else if(languege=='javascript') editor.session.setMode("ace/mode/javascript");
 }
 
+
 function executeCode(){$.ajax({
 	url: "http://localhost:6379/",
 	method: "POST",
@@ -55,54 +56,21 @@ function executeCode(){$.ajax({
 		code: editor.getSession().getValue()
 	},
 	success: function(response){
-		console.log(response.data,"response")
-		$(".output").text(response.data)
+		// console.log(response)
+		console.log(output,"response")
+		$(".output").text(response)
 	},
 	error: function(error){
 		console.log(error,"response")
 	}
 })
 
-	// let language = $("#languages").val();
-	// console.log(language);
 	
-
-	// let code = editor.getSession().getValue();
-	
-
-	// console.log(code);
-
-
-
-	// let random = Math.floor((Math.random() * 10000000) + 1);
-	// console.log(code);
-	// let filePath = "temp/"+random+"."+language;
-	// console.log(filePath);
-	// fs.writeFile(filePath, code, function(err) {
-	//     if(err) {
-	//         return console.log(err);
-	//     }
-	//     console.log("File saved successfully!");
-	// });
-
-
-
-	// exec('a',(e,stdout,stderr)=>{
-	// 	if(e instanceof Error){
-	// 		console.error(e);
-	// 		throw 0;
-	// 	}
-	// 	console.log('stdout : ',stdout);
-	// 	console.log('stderr : ',stderr);
-	// });
-
-
 }
 
 $('#toggle_fullscreen').on('click', function(){
 	console.log('edded test');
-  // if already full screen; exit
-  // else go fullscreen
+  
   if (
     document.fullscreenElement ||
     document.webkitFullscreenElement ||

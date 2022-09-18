@@ -1,9 +1,9 @@
-// const { exec } = require("child_process");
+
 const childProcess = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
-const outputPath = path.join(__dirname, "outputs");
+const outputPath = path.join(__dirname);
 
 if (!fs.existsSync(outputPath)) {
   fs.mkdirSync(outputPath, { recursive: true });
@@ -12,11 +12,11 @@ if (!fs.existsSync(outputPath)) {
 
 function executeC(filepath) {
   const jobId = path.basename(filepath).split(".")[0];
-  const outPath = path.join(outputPath, `${jobId}.out`);
+  const outPath = path.join(outputPath);
 
   return new Promise(function(resolve, reject) {
     try{
-    childProcess.exec(`gcc ${filepath} -o ${outPath} && ./${outPath} `, function(error, standardOutput, standardError) {
+    childProcess.exec(`gcc ${filepath} -o ${jobId}  && cd ${outPath} && ${jobId}   `, function(error, standardOutput, standardError) {
       if (error) {
         console.log("error>>>>>>>>>>>>>>>>>",error)
         reject();
